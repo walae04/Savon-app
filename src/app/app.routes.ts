@@ -8,6 +8,7 @@ import { UsersManagerPage } from './pages/users-manager-page/users-manager-page'
 import { IngredientManagerPage } from './pages/ingredient-manager-page/ingredient-manager-page';
 import { AboutPage } from './pages/about-page/about-page';
 import { RecipeManagerPage } from './pages/recipe-manager-page/recipe-manager-page';
+import { MentionsLegales } from './pages/mentions-legales/mentions-legales';
 
 export const routes: Routes = [
     // Accès & redirection vers la page home :
@@ -24,6 +25,7 @@ export const routes: Routes = [
 // Administration - Gestion :
 { path: 'users-manager', component: UsersManagerPage },
 { path: 'ingredients-manager', component: IngredientManagerPage},
+{ path: 'mentions-legales', component: MentionsLegales },
 // A propos (redirection vers home en cas d'url invalide):
 { path: "about", component: AboutPage } // Toujours mis en dernier !
 ];

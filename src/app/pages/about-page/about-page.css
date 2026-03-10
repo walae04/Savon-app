@@ -1,0 +1,13 @@
+.about-page {
+  max-width: 900px;
+  margin: auto;
+}
+
+.about-logo {
+  width: 200px;
+}
+
+.about-page h2,
+.about-page h3 {
+  margin-top: 25px;
+}
