@@ -34,36 +34,36 @@ export class RecipeManagerPage implements OnInit {
       }
     });
   }
-  /** Préparer l'ajout d'un nouvel ingrédient (ligne vide) */
-  creerNouvelleRecette(): void {
-    this.recetteSelectionne = {
-      id: 0, nom: '', sapo: 0, ins: 0, iode: 0,
-      volMousse: 0, tenueMousse: 0, douceur: 0,
-      lavant: 0, durete: 0, solubilite: 0, sechage: 0,
-      estCorpsGras: true
-    };
-  }
-  /** Lancer l'édition d'une ligne existante */
-  editerIngredient(item: Recette): void {
-    // On crée une copie pour éviter de modifier le tableau original avant validation
-    this.recetteSelectionne = { ...item };
-  }
-  /** Enregistrer (Ajout ou Update) */
-  saveIngredient(): void {
-    if (!this.recetteSelectionne) return;
-    const action = this.recetteSelectionne.id === 0
-      ? this.recetteService.addRecette(this.recetteSelectionne)
-      : this.recetteService.updateRecette(this.recetteSelectionne);
-    action.subscribe({
-      next: () => {
-        this.recetteSelectionne = null;
-        this.getRecette(); // Rafraîchir la liste
-      }
-    });
-  }
-  /** Supprimer un ingrédient */
-  deleteIngredient(id: number): void {
-    if (confirm("Supprimer cet ingrédient ?")) {
+  // /** Préparer l'ajout d'un nouvel recette (ligne vide) */
+  // creerNouvelleRecette(): void {
+  //   this.recetteSelectionne = {
+  //     id: 0, titre: '',description: '', surgraissage: 0, apportEnEau: 0, avecSoude: true,
+  //     qteAlcalin: 0, tenueMousse: 0, douceur: 0,
+  //     lavant: 0, durete: 0, solubilite: 0, sechage: 0,
+  //     estCorpsGras: true
+  //   };
+  // }
+  // /** Lancer l'édition d'une ligne existante */
+  // editerRecette(item: Recette): void {
+  //   // On crée une copie pour éviter de modifier le tableau original avant validation
+  //   this.recetteSelectionne = { ...item };
+  // }
+  // /** Enregistrer (Ajout ou Update) */
+  // saveRecette(): void {
+  //   if (!this.recetteSelectionne) return;
+  //   const action = this.recetteSelectionne.id === 0
+  //     ? this.recetteService.addRecette(this.recetteSelectionne)
+  //     : this.recetteService.updateRecette(this.recetteSelectionne);
+  //   action.subscribe({
+  //     next: () => {
+  //       this.recetteSelectionne = null;
+  //       this.getRecette(); // Rafraîchir la liste
+  //     }
+  //   });
+  // }
+  /** Supprimer un recette */
+  deleteRecette(id: number): void {
+    if (confirm("Supprimer cette recette ?")) {
       this.recetteService.deleteRecette(id).subscribe(() =>
         this.getRecette());
     }

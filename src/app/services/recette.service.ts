@@ -2,16 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Recette } from '../models/recette.model';
+import { RecetteFormDTO } from '../models/dto.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecetteService {
   // URL de base de notre API :
-  private readonly API_URL_Recette = 'http://localhost:8080/api-savon/v1/ingredient';
+  private readonly API_URL_Recette = 'http://localhost:8080/api-savon/v1/recette';
   constructor(private http: HttpClient) { }
   /**
-* Récupère la liste de tous les recettes depuis le backend.
+* Récupère la liste de tous les recettes depuis le backend. 
 * @returns Un Observable contenant le tableau des recettes.
 */
   getRecette(): Observable<Recette[]> {
@@ -24,11 +25,14 @@ export class RecetteService {
   getRecetteById(id: number): Observable<Recette> {
     return this.http.get<Recette>(`${this.API_URL_Recette}/${id}`);
   }
-  /** * Ajoute un nouvel ingrédient.
+  /**
+* Enregistre une nouvelle recette.
+* @param recette - L'objet Recette à enregistrer.
+* @returns Un Observable contenant la recette enregistrée.
 */
-  addRecette(recette: Recette): Observable<Recette> {
-    return this.http.post<Recette>(this.API_URL_Recette, recette);
-  }
+createRecette(recette: RecetteFormDTO): Observable<Recette> {
+return this.http.post<Recette>(this.API_URL_Recette, recette);
+}
   /** * Met à jour un ingrédient existant.
 */
   updateRecette(recette: Recette): Observable<Recette> {
@@ -42,7 +46,7 @@ export class RecetteService {
   }
   /** * Supprime tous les ingrédients de la base.
   */
-  deleteAllIngredients(): Observable<void> {
+  deleteAllRecettes(): Observable<void> {
     return this.http.delete<void>(`${this.API_URL_Recette}/all`);
   }
 }
