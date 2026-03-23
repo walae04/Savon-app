@@ -14,6 +14,7 @@ import { RecetteService } from '../../services/recette.service';
   styleUrl: './recipe-calculator-page.css',
 })
 export class RecipeCalculatorPage implements OnInit {
+  public recetteAffichee: Recette | null = null;
   // Liste des ingrédients disponibles :
   public ingredientsDispo: Ingredient[] = [];
   // Ingrédients sélectionnés :
@@ -58,6 +59,7 @@ export class RecipeCalculatorPage implements OnInit {
     // Optionnel : Réinitialiser le menu déroulant après l'ajout
     this.choixIngredient = null;
   }
+  
   /**
   * Recalcule les pourcentages
   */
@@ -101,6 +103,7 @@ export class RecipeCalculatorPage implements OnInit {
       error: (err) => {
         console.error('Erreur lors de la création de la recette :', err);
       }
+
     });
   }
 }

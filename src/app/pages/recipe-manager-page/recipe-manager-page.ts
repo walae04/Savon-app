@@ -12,6 +12,18 @@ import { RecetteService } from '../../services/recette.service';
 export class RecipeManagerPage implements OnInit {
   // Objet temporaire pour l'ajout ou la modification
   public recetteSelectionne: Recette | null = null;
+  /**
+* Définit la recette sélectionnée pour l'affichage des détails
+*/
+  ouvrirModale(recette: Recette): void {
+    this.recetteSelectionne = recette;
+  }
+  /**
+  * Réinitialise la sélection à la fermeture
+  */
+  fermerModale(): void {
+    this.recetteSelectionne = null;
+  }
   // 1. Déclaration du tableau de stockage des recettes
   public recettes: Recette[] = [];
   // 2. Injection du service :
@@ -19,6 +31,7 @@ export class RecipeManagerPage implements OnInit {
   // 3. Méthode d'initialisation du composant :
   ngOnInit(): void {
     this.getRecette();
+
   }
   /***
     * Méthode d'appel du service pour récupérer les données par l'API
