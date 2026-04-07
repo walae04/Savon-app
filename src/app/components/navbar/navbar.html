@@ -25,12 +25,17 @@
                     </a>
                 </li>
                 <!-- Accès aux recettes de l'utilisateur -->
+                @if (authService.getUserFullInfo()?.roles == "ROLE_UTILISATEUR" || authService.getUserFullInfo()?.roles
+                == "ROLE_ADMIN" ) {
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="recipe-manager" routerLinkActive="active" title="Gérer mes recettes (retrouver ,modifier,supprimer...)">
+                    <a class="nav-link" routerLink="recipe-manager" routerLinkActive="active"
+                        title="Gérer mes recettes (retrouver ,modifier,supprimer...)">
                         <i class="bi bi-journal-text"> </i>
                         Mes recettes
                     </a>
                 </li>
+                }
+                @if (authService.getUserFullInfo()?.roles == "ROLE_ADMIN" ) {
                 <!-- Accès gestion des utilisateurs pour l'administrateur -->
                 <li class="nav-item admin-only">
                     <a class="nav-link" routerLink="users-manager" routerLinkActive="active"
@@ -41,11 +46,13 @@
                 </li>
                 <!-- Accès gestion des ingrédients pour l'administrateur -->
                 <li class="nav-item admin-only">
-                    <a class="nav-link" routerLink="ingredients-manager" routerLinkActive="active" title="Gérer les ingrédients (corps gras et agents alcalins)">
+                    <a class="nav-link" routerLink="ingredients-manager" routerLinkActive="active"
+                        title="Gérer les ingrédients (corps gras et agents alcalins)">
                         <i class="bi bi-collection-fill"> </i>
                         Ingrédients
                     </a>
                 </li>
+                }
             </ul>
         </div>
     </div>

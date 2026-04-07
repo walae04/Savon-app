@@ -31,6 +31,8 @@ export class RecetteService {
 * @returns Un Observable contenant la recette enregistrée.
 */
 createRecette(recette: RecetteFormDTO): Observable<Recette> {
+  console.log(recette);
+  
 return this.http.post<Recette>(this.API_URL_Recette, recette);
 }
   /** * Met à jour un ingrédient existant.

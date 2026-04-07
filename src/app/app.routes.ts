@@ -4,28 +4,40 @@ import { LoginPage } from './pages/login-page/login-page';
 import { SubscribePage } from './pages/subscribe-page/subscribe-page';
 import { AccountManagerPage } from './pages/account-manager-page/account-manager-page';
 import { RecipeCalculatorPage } from './pages/recipe-calculator-page/recipe-calculator-page';
-import { UsersManagerPage } from './pages/users-manager-page/users-manager-page';
-import { IngredientManagerPage } from './pages/ingredient-manager-page/ingredient-manager-page';
-import { AboutPage } from './pages/about-page/about-page';
 import { RecipeManagerPage } from './pages/recipe-manager-page/recipe-manager-page';
+import { UsersManagerPage } from './pages/users-manager-page/users-manager-page';
+import { AboutPage } from './pages/about-page/about-page';
+import { authGuard } from './guards/aut-guard';
+import { IngredientManagerPage } from './pages/ingredient-manager-page/ingredient-manager-page';
 import { MentionsLegales } from './pages/mentions-legales/mentions-legales';
 
 export const routes: Routes = [
     // Accès & redirection vers la page home :
-{ path: '', pathMatch: 'full', redirectTo: 'home' }, // Route de la racine :
-{ path: 'home', component: HomePage },
-// Pages d'authentification :
-{ path: 'login', component: LoginPage },
-{ path: 'subscribe', component: SubscribePage},
-// Compte utilisateur :
-{ path: 'account', component: AccountManagerPage },
-// Recettes :
-{ path: 'recipe-calculator', component: RecipeCalculatorPage },
-{ path: 'recipe-manager', component: RecipeManagerPage},
-// Administration - Gestion :
-{ path: 'users-manager', component: UsersManagerPage },
-{ path: 'ingredients-manager', component: IngredientManagerPage},
-{ path: 'mentions-legales', component: MentionsLegales },
-// A propos (redirection vers home en cas d'url invalide):
-{ path: "about", component: AboutPage } // Toujours mis en dernier !
+    { path: '', pathMatch: 'full', redirectTo: 'home' }, // Route de la racine :
+    { path: 'home', component: HomePage },
+    // Pages d'authentification :
+    { path: 'login', component: LoginPage },
+    { path: 'subscribe', component: SubscribePage },
+    // Compte utilisateur :
+    { path: 'account', component: AccountManagerPage, canActivate: [authGuard] },
+    // Recettes :
+    { path: 'recipe-calculator', component: RecipeCalculatorPage },
+    {
+        path: 'recipe-manager', component: RecipeManagerPage, canActivate:
+            [authGuard]
+    },
+    // Administration - Gestion :
+    {
+        path: 'users-manager', component: UsersManagerPage, canActivate: [authGuard]
+    },
+    {
+        path: 'ingredients-manager', component: IngredientManagerPage, canActivate:
+            [authGuard]
+    },
+    // A propos :
+    { path: "about", component: AboutPage },
+    // Mentions légales :
+    { path: "legal-notice", component: MentionsLegales },
+    // Redirection par défaut vers home (en cas d'url invalide) :
+    { path: '**', redirectTo: 'home' } // Toujours mis en dernier !
 ];

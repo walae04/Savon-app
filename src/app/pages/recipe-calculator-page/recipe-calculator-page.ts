@@ -28,7 +28,7 @@ export class RecipeCalculatorPage implements OnInit {
     description: '',
     surgraissage: 0,
     avecSoude: false,
-    concentrationAlcali: 0,
+    concentrationAlcalin: 0,
     ligneIngredients: []
   }
   // Injection des services par le constructeur :

@@ -3,6 +3,10 @@
         @for (recette of recettes; track recette.id) {
         <div class="col-md-4 mb-4">
             <div class="card h-100 shadow-sm">
+                <!-- Affichage du graphe radar : -->
+                <div class="chart-container mb-3" style="position: relative; height:400px;">
+                    <canvas [id]="'chart-' + recette.id"></canvas>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title text-primary">{{ recette.titre }}</h5>
                     <p class="card-text text-truncate">{{ recette.description }}</p>
@@ -75,11 +79,11 @@
                             recetteSelectionne.apportEnEau }} g</span>
                         <span><strong>{{ recetteSelectionne.avecSoude ? 'Soude' :
                                 'Potasse' }} :</strong>
-                            {{ recetteSelectionne.qteAlcali }} g</span>
+                            {{ recetteSelectionne.qteAlcalin }} g</span>
                     </div>
                     <h6>Scores de qualité</h6>
                     <div class="row">
-                        @for (res of recetteSelectionne?.resultats; track
+                        @for (res of recetteSelectionne.resultats; track
                         res.caracteristique.id) {
                         <div class="col-md-6 mb-2">
                             <small>{{ res.caracteristique.nom }} : {{ res.score }}
