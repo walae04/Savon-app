@@ -2,7 +2,7 @@
     <div class="row">
         @for (recette of recettes; track recette.id) {
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow-sm" [ngClass]="{'surgraissage-faible': recette.surgraissage < 5}">
                 <!-- Affichage du graphe radar : -->
                 <div class="chart-container mb-3" style="position: relative; height:400px;">
                     <canvas [id]="'chart-' + recette.id"></canvas>

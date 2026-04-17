@@ -8,3 +8,12 @@ display: block;
 width: 100% !important;
 height: auto !important;
 }
+/* Mise en evidence des recettes avec surgraissage < 5% */
+.surgraissage-faible {
+  border: 2px solid #e91e8c !important;
+  background-color: #fff0f7 !important;
+}
+
+.surgraissage-faible .card-title {
+  color: #c2185b !important;
+}
